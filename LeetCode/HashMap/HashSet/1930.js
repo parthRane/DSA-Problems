@@ -20,25 +20,56 @@ Explanation: The 3 palindromic subsequences of length 3 are:
  * @param {string} s
  * @return {number}
  */
-var countPalindromicSubsequence = function(s) {
-    let res = new Set();
-    let left = new Set();
-    let map = new Map();
-    for(const char of s){
-        if(map.has(char)){
-            map.set(char,map.get(char)+1);
-        }else{
-            map.set(char,1);
-        }
+var countPalindromicSubsequence = function (s) {
+  let res = new Set();
+  let left = new Set();
+  let map = new Map();
+  for (const char of s) {
+    if (map.has(char)) {
+      map.set(char, map.get(char) + 1);
+    } else {
+      map.set(char, 1);
     }
-    for(const midChar of s){
-        map.set(midChar, map.get(midChar)-1);
-        for(const outerChar of left){
-            if(map.get(outerChar)>0){
-                res.add(`${midChar}${outerChar}`);
-            }
-        }
-        left.add(midChar);
+  }
+  for (const midChar of s) {
+    map.set(midChar, map.get(midChar) - 1);
+    for (const outerChar of left) {
+      if (map.get(outerChar) > 0) {
+        res.add(`${midChar}${outerChar}`);
+      }
     }
-    return res.size;
+    left.add(midChar);
+  }
+  return res.size;
+};
+
+// Kalyan
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var countPalindromicSubsequence = function (s) {
+  let splitedString = s.split("");
+  let map = new Map();
+
+  for (let i = 0; i < splitedString.length; i++) {
+    if (!map.has(splitedString[i])) {
+      map.set(splitedString[i], [i, i]);
+    } else {
+      let currentVal = map.get(splitedString[i]);
+      map.set(splitedString[i], [currentVal[0], i]);
+    }
+  }
+
+  let count = 0;
+
+  for (const value of map.values()) {
+    if (value[0] !== value[1]) {
+      let set = new Set(splitedString.slice(value[0] + 1, value[1]));
+      count += set.size;
+    }
+  }
+
+  return count;
 };
