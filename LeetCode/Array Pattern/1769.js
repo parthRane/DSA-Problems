@@ -10,23 +10,50 @@ considering the initial state of the boxes.
  * @param {string} boxes
  * @return {number[]}
  */
-var minOperations = function(boxes) {
-    const boxesArr = boxes.split("").map(Number);
-    let result = new Array(boxes.length).fill(0);
-    let balls = 0, moves = 0;
-    for(let i=0;i<boxesArr.length;i++){
-        result[i] = balls + moves;
-        moves = moves + balls;
-        balls += boxesArr[i];
-
-    }
-    balls = 0, moves = 0;
-    for(let i= boxesArr.length -1;i >= 0; i--){
-        result[i] += balls + moves;
-        moves = moves + balls;
-        balls += boxesArr[i];
-
-    }
-    return result;
-    
+var minOperations = function (boxes) {
+  const boxesArr = boxes.split("").map(Number);
+  let result = new Array(boxes.length).fill(0);
+  let balls = 0,
+    moves = 0;
+  for (let i = 0; i < boxesArr.length; i++) {
+    result[i] = balls + moves;
+    moves = moves + balls;
+    balls += boxesArr[i];
+  }
+  (balls = 0), (moves = 0);
+  for (let i = boxesArr.length - 1; i >= 0; i--) {
+    result[i] += balls + moves;
+    moves = moves + balls;
+    balls += boxesArr[i];
+  }
+  return result;
 };
+
+// Kalyan - typescript
+
+function minOperations(boxes: string): number[] {
+  let res = new Array(boxes.length).fill(0);
+
+  let balls = 0,
+    moves = 0;
+
+  let splitedString = boxes.split("");
+
+  for (let i = 0; i < splitedString.length; i++) {
+    res[i] = balls + moves;
+
+    moves += balls;
+    balls += Number(boxes[i]);
+  }
+
+  (balls = 0), (moves = 0);
+
+  for (let i = splitedString.length - 1; i >= 0; i--) {
+    res[i] += balls + moves;
+
+    moves += balls;
+    balls += Number(boxes[i]);
+  }
+
+  return res;
+}
