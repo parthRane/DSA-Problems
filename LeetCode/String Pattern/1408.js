@@ -17,3 +17,24 @@ var stringMatching = function (words) {
   }
   return [...res];
 };
+
+// Solved By Parth
+/**
+ * @param {string[]} words
+ * @return {string[]}
+ */
+var stringMatching = function(words) {
+  let result = new Set();
+  for(let i=0;i<words.length;i++){
+      for(let j=0;j<words.length;j++){
+          if(i == j){
+              continue;
+          }
+          if(words[j].includes(words[i])){
+              result.add(words[i]);
+          }
+      }
+  }
+  return [...result];
+  
+};

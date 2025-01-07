@@ -31,29 +31,29 @@ var minOperations = function (boxes) {
 
 // Kalyan - typescript
 
-function minOperations(boxes: string): number[] {
-  let res = new Array(boxes.length).fill(0);
+// function minOperations(boxes: string): number[] {
+//   let res = new Array(boxes.length).fill(0);
 
-  let balls = 0,
-    moves = 0;
+//   let balls = 0,
+//     moves = 0;
 
-  let splitedString = boxes.split("");
+//   let splitedString = boxes.split("");
 
-  for (let i = 0; i < splitedString.length; i++) {
-    res[i] = balls + moves;
+//   for (let i = 0; i < splitedString.length; i++) {
+//     res[i] = balls + moves;
 
-    moves += balls;
-    balls += Number(boxes[i]);
-  }
+//     moves += balls;
+//     balls += Number(boxes[i]);
+//   }
 
-  (balls = 0), (moves = 0);
+//   (balls = 0), (moves = 0);
 
-  for (let i = splitedString.length - 1; i >= 0; i--) {
-    res[i] += balls + moves;
+//   for (let i = splitedString.length - 1; i >= 0; i--) {
+//     res[i] += balls + moves;
 
-    moves += balls;
-    balls += Number(boxes[i]);
-  }
+//     moves += balls;
+//     balls += Number(boxes[i]);
+//   }
 
-  return res;
-}
+//   return res;
+// }
