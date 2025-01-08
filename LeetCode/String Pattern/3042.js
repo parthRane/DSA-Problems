@@ -27,3 +27,23 @@ var countPrefixSuffixPairs = function (words) {
 function isPrefixAndSuffix(str1, str2) {
   return str2.startsWith(str1) && str2.endsWith(str1);
 }
+
+//Solved By Parth
+/**
+ * @param {string[]} words
+ * @return {number}
+ */
+var countPrefixSuffixPairs = function(words) {
+  let result =0;
+  for(let i=0;i<words.length;i++){
+      for(let j=i+1;j<words.length;j++){
+          if(isPrefixOrSufix(words[i],words[j])){
+              result++;
+          }
+      }
+  }
+  return result;
+};
+function isPrefixOrSufix(str1,str2){
+  return str2.startsWith(str1) && str2.endsWith(str1);
+}
