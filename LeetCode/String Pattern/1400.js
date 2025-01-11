@@ -31,3 +31,28 @@ var canConstruct = function (s, k) {
 
   return odd <= k;
 };
+
+//Solved By Parth
+/**
+ * @param {string} s
+ * @param {number} k
+ * @return {boolean}
+ */
+var canConstruct = function(s, k) {
+  if (k > s.length) {
+      return false;
+  }
+  let map = new Map();
+  for (const char of s) {
+      if (map.has(char)) {
+          map.set(char, map.get(char) + 1);
+      } else {
+          map.set(char, 1);
+      }
+  }
+  let odd = 0;
+  for (let count of map.values()) {
+      odd += count % 2;
+  }
+  return odd <= k;
+};
